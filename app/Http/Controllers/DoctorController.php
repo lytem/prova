@@ -8,6 +8,10 @@ use App\Http\Requests\DoctorRequest;
 
 class DoctorController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Doctor::class, 'doctor');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +22,7 @@ class DoctorController extends Controller
         $items=Doctor::orderby('cognome','ASC')->get();
         return view('Doctors.index',compact('items'));
     }
+
 
     /**
      * Show the form for creating a new resource.
