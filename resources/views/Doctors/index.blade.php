@@ -45,7 +45,7 @@
 
 
 
-        @can('create', App\Models\Post::class)
+        @can('create', App\Models\Doctor::class)
             <!-- The current user can create new posts... -->
             <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
             <!-- ... -->

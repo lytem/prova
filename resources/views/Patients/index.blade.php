@@ -39,6 +39,12 @@
 
         </tbody>
     </table>
-    <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
+
+    @can('create', App\Models\Patient::class)
+            <!-- The current user can create new posts... -->
+            <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
+            <!-- ... -->
+        @endcan
+
 </body>
 @endsection
