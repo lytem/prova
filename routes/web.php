@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\PatientController;
-
+use App\Http\controllers\DoctorController;
+use App\Http\controllers\PatientController;
+use App\Http\controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('home');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
