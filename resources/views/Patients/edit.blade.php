@@ -50,6 +50,21 @@
                 <input type="text" name="patient[città]" class="form-control" placeholder="città"
                     value="{{ $patient->città }}" />
             </div>
+            <div class="form-group">
+                <label for="doctor_id">Scelgi dottore</label>
+
+                <select name="patient[doctor_id]" class="form-control">
+                    <option value="0"> ---dottore--- </option>
+                    @foreach ($doctor as $item)
+
+                        <option value="{{ $item->id }}" @if($item->id == $patient->doctor_id) selected="selected" @endif>{{ Str::ucfirst($item->nome)  }}
+                           {{$item->cognome}}
+                        </option>
+
+
+                    @endforeach
+                </select>
+
 
 
         </div>

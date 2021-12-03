@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
+use App\Models\Doctor;
 
 class PatientController extends Controller
 {
@@ -17,10 +18,27 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items=Patient::get();
-        return view('Patients.index',compact('items'));
+        $query=$request->input('query','');
+
+        $items=Patient::orderby('cognome','ASC');
+
+        if ($query) {
+            $items=$items->where('cognome','LIKE','%.'.$query.'%');
+        }
+        $items=$items->get();
+        return view('Patients.index',compact('items','query'));
+    }
+
+    public function patientDoctor($doctorId){
+        $patient=Patient::get();
+        $doctor=Doctor::find($doctorId);
+
+        $items=$doctor->patient()->get();
+
+        return view('patients.patients_doctor',compact('patient','items','doctor'));
+
     }
 
     /**
@@ -30,7 +48,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patients.create');
+        $doctor=Doctor::get();
+        return view('patients.create',compact('doctor'));
     }
 
     /**
@@ -41,11 +60,14 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
-        $patient=new Patient();
+        if (!$patient=Patient::where('codic_fiscale',$request->input('codice_fiscale'))->first()) {
+            $patient=Patient::create($request->input('patient'));
+        }
 
-        $patient->create($request->input('patient'));
+        return redirect()->route('patients.index')->with('message', $patient->wasRecentlyCreated ? "paziente creato" : "paziente già presente");
 
-        return redirect('/clinica/patients');
+
+
     }
 
     /**
@@ -67,7 +89,8 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        return view('Patient.edit',compact('patient'));
+        $doctor=Doctor::get();
+        return view('Patients.edit',compact('patient','doctor'));
     }
 
     /**
@@ -80,8 +103,9 @@ class PatientController extends Controller
     public function update(PatientRequest $request, Patient $patient)
     {
         $patient->update($request->input('patient'));
+        return redirect()->route('patients.index')->with('message','paziente modificato');
 
-        return redirect('/clinica/patients');
+
     }
 
     /**

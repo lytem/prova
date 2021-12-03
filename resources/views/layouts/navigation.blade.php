@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
                     </x-nav-link>
 
                 </div>
@@ -26,6 +26,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients')">
                         {{ __('Pazienti') }}
+                    </x-nav-link>
+
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments')">
+                        {{ __('Appuntamenti') }}
                     </x-nav-link>
 
                 </div>

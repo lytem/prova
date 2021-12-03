@@ -23,6 +23,7 @@ class CreatePatientsTable extends Migration
             $table->string('email',191)->nullable();
             $table->string('residenza',191)->nullable();
             $table->string('città',191)->nullable();
+            $table->integer('doctor_id');
             $table->softDeletes('deleted_at');
             $table->timestamps();
         });

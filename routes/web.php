@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\DoctorController;
 use App\Http\controllers\PatientController;
 use App\Http\controllers\HomeController;
+use App\Http\controllers\AppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,5 +36,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('clinica')->group(function () {
     Route::resource('doctors', DoctorController::class);
     Route::resource('patients', PatientController::class);
-
+    Route::resource('appointments', AppointmentController::class);
+    Route::get('doctors/{doctorId}/patients',[PatientController::class,'patientDoctor']);
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\DoctorRequest;
+use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -17,10 +18,16 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items=Doctor::orderby('cognome','ASC')->get();
-        return view('Doctors.index',compact('items'));
+        $query=$request->input('query','');
+        $items=Doctor::orderby('cognome','ASC');
+
+        if ($query) {
+            $items=$items->where('cognome','LIKE','%.'.$query.'%');
+        }
+        $items=$items->get();
+        return view('Doctors.index',compact('items','query'));
     }
 
 
@@ -42,11 +49,13 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        $doctor=new Doctor();
 
-        $doctor->create($request->input('doctor'));
 
-        return redirect('/clinica/doctors');
+        if(!$doctor = Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->first()) {
+            $doctor = Doctor::create($request->input('doctor'));
+        }
+        return redirect()->route('doctors.index')->with('message', $doctor->wasRecentlyCreated ? "dottore creato" : "Dottore già presente");
+
     }
 
     /**
@@ -82,7 +91,14 @@ class DoctorController extends Controller
     {
         $doctor->update($request->input('doctor'));
 
-        return redirect('/clinica/doctors');
+        if(!$doctor = Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->first()) {
+
+        }
+
+
+        return redirect()->route('doctors.index')->with('message',"dottore modificato");
+
+
     }
 
     /**
@@ -91,9 +107,10 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Doctor $doctor , Request $request)
     {
         $doctor->delete();
+        $request->session()->flash('update','update Succeful!!!!!!!!!!!!!!');
         return redirect('/clinica/doctors');
     }
 }
