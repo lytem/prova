@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Log;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Department::class, 'department');
+    }
     /**
      * Display a listing of the resource.
      *

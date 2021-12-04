@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Log;
 
 class SpecialtyController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Specialty::class, 'specialty');
+    }
     /**
      * Display a listing of the resource.
      *

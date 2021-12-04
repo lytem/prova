@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Builder;
 
 class AppointmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Appointment::class, 'appointment');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +25,25 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         Log::info("viewing appointments",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
+
         $query=$request->input('query','');
-        $items=Appointment::get();
+
+        $items=Appointment::orderby('data','ASC');
+
         $patient=Patient::orderby('cognome','ASC');
+
+        $cont=0;
+
         if ($query) {
-            $patient=$patient->where('patient.cognome','LIKE','%'.$query.'%');
+
+            $items = Appointment::whereRelation('patient', 'cognome','LIKE','%'.$query.'%')->orwhererelation('patient', 'nome','LIKE','%'.$query.'%')->get();
+        }
+        else{
+            $items=$items->get();
         }
         $doctor=Doctor::get();
 
-        return view('appointments.index',compact('items','doctor','patient'));
+        return view('appointments.index',compact('items','doctor','patient','cont','query'));
     }
     public function appointmentsDoctor($doctorId){
 
