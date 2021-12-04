@@ -50,6 +50,7 @@
         </div>
         <div class="card-footer text-muted">
             <input type="submit" value="salva" class="btn btn-info">
+            <a href="{{url()->previous()}}" class="btn btn-dark">indietro</a>
         </div>
 
 

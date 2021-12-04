@@ -23,6 +23,7 @@ class CreateDoctorsTable extends Migration
             $table->string('email',191)->nullable();
             $table->string('residenza',191)->nullable();
             $table->string('città',191)->nullable();
+            $table->integer('specialty_id')->nullable();
 
             $table->softDeletes('deleted_at');
             $table->timestamps();

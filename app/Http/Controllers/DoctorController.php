@@ -22,12 +22,16 @@ class DoctorController extends Controller
     {
         $query=$request->input('query','');
         $items=Doctor::orderby('cognome','ASC');
-
+        $conta=0;
         if ($query) {
             $items=$items->where('cognome','LIKE','%'.$query.'%');
+            $conta=$items->count();
         }
-        $items=$items->get();
-        return view('Doctors.index',compact('items','query'));
+        else{
+            $items=$items->get();
+        }
+
+        return view('Doctors.index',compact('items','query','conta'));
     }
 
 
@@ -89,15 +93,15 @@ class DoctorController extends Controller
      */
     public function update(DoctorRequest $request, Doctor $doctor)
     {
-        $doctor->update($request->input('doctor'));
 
-        if(!$doctor = Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->first()) {
 
+        if(Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->count()==0) {
+            $doctor->update($request->input('doctor'));
         }
-
-
+        else{
+            return redirect()->route('doctors.index')->with('message',"Questo dottore esiste gia");
+        }
         return redirect()->route('doctors.index')->with('message',"dottore modificato");
-
 
     }
 
@@ -110,7 +114,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor , Request $request)
     {
         $doctor->delete();
-        $request->session()->flash('update','update Succeful!!!!!!!!!!!!!!');
-        return redirect('/clinica/doctors');
+
+        return redirect()->route('doctors.index')->with('message',"cancellazione riuscita");
     }
 }

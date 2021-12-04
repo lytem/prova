@@ -35,6 +35,24 @@
                     </x-nav-link>
 
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments')">
+                        {{ __('Reparti') }}
+                    </x-nav-link>
+
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('exams.index')" :active="request()->routeIs('exams')">
+                        {{ __('Esami') }}
+                    </x-nav-link>
+
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('specialties.index')" :active="request()->routeIs('specialties')">
+                        {{ __('Specialità') }}
+                    </x-nav-link>
+
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

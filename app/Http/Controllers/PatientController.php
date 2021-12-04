@@ -23,13 +23,16 @@ class PatientController extends Controller
         $query=$request->input('query','');
 
         $items=Patient::orderby('cognome','ASC');
+        $cont=0;
 
        if($query) {
             $items=Patient::where('cognome','LIKE','%'.$query.'%');
+            $cont=$items->count();
         }
-
-        $items=$items->get();
-        return view('Patients.index',compact('items','query'));
+        else{
+            $items=$items->get();
+        }
+        return view('Patients.index',compact('items','query','cont'));
     }
 
     public function patientDoctor($doctorId){
@@ -109,13 +112,11 @@ class PatientController extends Controller
             //$patient=Patient::update($request->input('patient'));
             $patient->update($request->input('patient'));
         }
+        else{
+            return redirect()->route('patients.index')->with('message',"paziente già presente");
+        }
 
-        return redirect()->route('patients.index')->with('message', $patient->wasRecentlyCreated ? "paziente creato" : "paziente già presente");
-
-
-
-
-
+        return redirect()->route('patients.index')->with('message', "paziente creato");
 
     }
 
@@ -128,6 +129,7 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
-        return redirect('/clinica/patients');
+
+        return redirect()->route('patients.index')->with('message',"cancellazione riuscita");
     }
 }

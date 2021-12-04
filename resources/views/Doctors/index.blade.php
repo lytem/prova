@@ -13,7 +13,7 @@
                     <div class="alert alert-success">{{ session('delete') }}</div>
                 @endif
             </div>
-            @if (!$items->count())
+            @if ($cont=0)
                 Nessun risultato trovato
             @endif
 

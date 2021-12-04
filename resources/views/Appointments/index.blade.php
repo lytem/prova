@@ -36,7 +36,7 @@
                                             action="{{ route('appointments.index') }}" id="searc">
                                             @csrf
                                             <input type="search" name="query" value="{{ $query ?? '' }}"
-                                                class="form-control rounded" placeholder="Search doctor"
+                                                class="form-control rounded" placeholder="Search patient"
                                                 aria-label="Search" />
                                             <button type="submit" class="btn btn-outline-primary"
                                                 form="searc">search</button>
@@ -96,9 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        Footer
-                    </div>
+
                 </div>
 
 

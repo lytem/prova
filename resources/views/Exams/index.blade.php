@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
     <div class="card">
         <div class="card-header">
             <div class="card-header">
@@ -13,7 +15,7 @@
                         <div class="alert alert-success">{{ session('delete') }}</div>
                     @endif
                 </div>
-                @if ($cont=0)
+                @if ($conta=0)
                     Nessun risultato trovato
                 @endif
 
@@ -26,19 +28,20 @@
                                     <div style="float: left">
                                         <h1>
                                             <b
-                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">Pazienti</b>
+                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">elenco esami</b>
                                         </h1>
                                     </div>
                                     <div style="float: right">
                                         <form class="form-inline m-0 my-lg-0" method="GET"
-                                            action="{{ route('patients.index') }}" id="searc">
+                                            action="{{ route('exams.index') }}" id="searc">
                                             @csrf
                                             <input type="search" name="query" value="{{ $query ?? '' }}"
-                                                class="form-control rounded" placeholder="Search paziente"
+                                                class="form-control rounded" placeholder="Search esame"
                                                 aria-label="Search" />
                                             <button type="submit" class="btn btn-outline-primary"
                                                 form="searc">search</button>
-                                            <a class="btn btn-primary" href="{{ route('patients.index') }}">Resetta</a>
+                                            <a class="btn btn-primary"
+                                                href="{{ route('exams.index') }}">Resetta</a>
                                         </form>
                                     </div>
 
@@ -46,65 +49,51 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table class="table table-hover">
+                                <table class="table tab-content table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>nome</th>
-                                        <th>cognome</th>
-                                        <th>Partita iva</th>
-                                        <th>codice fiscale</th>
-                                        <th>Telefono</th>
-                                        <th>Email</th>
-                                        <th>Residenza</th>
-                                        <th>Città</th>
-                                        <th>Medico di base</th>
+                                        <th>Nome esame</th>
+                                        <th>costo</th>
+
                                     </thead>
                                     <tbody>
-
                                         @foreach ($items as $item)
                                             <tr>
-                                                <td><a href="{{ route('patients.edit', $item->id) }}"
-                                                        class="btn btn-primary btn-circle"><i
-                                                            class="fa fa-user-circle"></i></a></td>
-                                                <td>{{ $item->nome }}</td>
-                                                <td>{{ $item->cognome }}</td>
-                                                <td>{{ $item->partita_iva }}</td>
-                                                <td>{{ $item->codice_fiscale }}</td>
-                                                <td>{{ $item->telefono }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->residenza }}</td>
-                                                <td>{{ $item->città }}</td>
-                                                <td>{{ !empty($item->doctor) ? $item->doctor->nome : '' }}</td>
+                                                <td><a href="{{ route('exams.edit', $item->id) }}"
+                                                        class="btn btn-info"><i class="fa fa-address-book"
+                                                            aria-hidden="true"></a></i></td>
+                                                <td>{{$item->nome}}
+                                                </td>
                                                 <td>
-                                                    <form action="{{ route('patients.destroy', $item->id) }}"
-                                                        method="POST">
+                                                    {{$item->costo}}
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('exams.destroy', $item->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-circle"><i
                                                                 class="fa fa-trash"></i>
-                                                        </button>
                                                     </form>
-                                                </td>
-                                            </tr>
 
+                                                </td>
+
+                                            </tr>
                                         @endforeach
 
                                     </tbody>
                                 </table>
-
-                                @can('create', App\Models\Patient::class)
-                                    <!-- The current user can create new posts... -->
-                                    <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
-                                    <!-- ... -->
-                                @endcan
-
                             </div>
                             <div class="card-footer text-muted">
 
+                                <a href="{{ route('exams.create') }}" class="btn btn-primary">nuovo esame</a>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+
             </div>
         </div>
     </div>

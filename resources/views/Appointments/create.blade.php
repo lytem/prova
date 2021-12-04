@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header">
-            Header
+           <h1>nuovo appuntamento</h1>
         </div>
         <div class="card-body">
             <form action="{{route('appointments.store')}}" method="post">
@@ -51,7 +51,8 @@
                 <div class="card-footer text-muted">
 
                     <input type="submit" value="salva" class="btn btn-success">
-                    <a href="{{route('patients.create')}}" class="btn btn-info">nuovo paziente</a>
+                    <a href="{{route('patients.create')}}" class="btn btn-info" style="float: right">nuovo paziente</a>
+                    <a href="{{url()->previous()}}" class="btn btn-dark" style="float: left">indietro</a>
                 </div>
             </form>
         </div>

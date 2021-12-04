@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppointmentsTable extends Migration
+class CreateExamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->integer('doctor_id')->nullable();
-            $table->integer('patient_id')->nullable();
-            $table->integer('department_id')->nullable();
-            $table->string('data');
-            $table->string('ora');
-
-
+            $table->string('nome');
+            $table->string('costo');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('exams');
     }
 }
