@@ -6,6 +6,8 @@ use App\Models\Department;
 use App\Models\Exam;
 use Illuminate\Http\Request;
 use App\Http\Requests\DepartmentRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DepartmentController extends Controller
 {
@@ -16,6 +18,7 @@ class DepartmentController extends Controller
      */
     public function index(Request $request)
     {
+        Log::info("viewing departments",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
         $items=Department::orderby('nome','ASC');
         $cont=0;
@@ -49,6 +52,7 @@ class DepartmentController extends Controller
      */
     public function store(DepartmentRequest $request)
     {
+        Log::info("creating department",['user'=>Auth::user()->email]);
         if(!$department = Department::where('nome',$request->input('department.nome'))->first()) {
             $department = Department::create($request->input('department'));
         }
@@ -88,6 +92,7 @@ class DepartmentController extends Controller
      */
     public function update(DepartmentRequest $request, Department $department)
     {
+        Log::info("updating department",['id'=>$department->id,'user'=>Auth::user()->email]);
         if( Department::where('nome',$request->input('department.nome'))->count()==0) {
             $department->update($request->input('department'));
         }
@@ -106,6 +111,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        Log::info("deleting department",['id'=>$department->id,'user'=>Auth::user()->email]);
         $department->delete();
         return redirect()->route('departments.index')->with('message','cancellazione riuscita');
     }

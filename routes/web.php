@@ -41,6 +41,7 @@ Route::prefix('clinica')->group(function () {
     Route::resource('patients', PatientController::class);
     Route::resource('appointments', AppointmentController::class);
     Route::get('doctors/{doctorId}/patients',[PatientController::class,'patientDoctor']);
+    Route::get('doctors/{doctorId}/appointments',[AppointmentController::class,'appointmentsDoctor']);
     Route::resource('departments', DepartmentController::class);
     Route::resource('exams', ExamController::class);
     Route::resource('specialties', SpecialtyController::class);

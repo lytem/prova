@@ -6,6 +6,8 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
 use App\Models\Doctor;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PatientController extends Controller
 {
@@ -20,6 +22,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
+        Log::info("viewing patients",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
 
         $items=Patient::orderby('cognome','ASC');
@@ -64,6 +67,7 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
+        Log::info("creating patient",['user'=>Auth::user()->email]);
         if (!$patient=Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->first()) {
             $patient=Patient::create($request->input('patient'));
         }
@@ -106,7 +110,7 @@ class PatientController extends Controller
      */
     public function update(PatientRequest $request, Patient $patient)
     {
-
+        Log::info("updating patient",['id'=>$patient->id,'user'=>Auth::user()->email]);
 
         if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==0) {
             //$patient=Patient::update($request->input('patient'));
@@ -128,6 +132,7 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
+        Log::info("deleting patient",['id'=>$patient->id,'user'=>Auth::user()->email]);
         $patient->delete();
 
         return redirect()->route('patients.index')->with('message',"cancellazione riuscita");

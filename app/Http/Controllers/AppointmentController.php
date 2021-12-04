@@ -7,6 +7,8 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
 {
@@ -17,6 +19,7 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
+        Log::info("viewing appointments",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
         $items=Appointment::get();
         $patient=Patient::orderby('cognome','ASC');
@@ -27,7 +30,14 @@ class AppointmentController extends Controller
 
         return view('appointments.index',compact('items','doctor','patient'));
     }
+    public function appointmentsDoctor($doctorId){
 
+        $appointment=Appointment::orderby('ora','ASC')->get();
+        $doctor=Doctor::find($doctorId);
+
+        $items=$doctor->appointment()->get();
+        return view('appointments.appointmentsDoctor',compact('doctorId','items','appointment'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,6 +45,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
+
         $doctor=Doctor::get();
         $patient=Patient::get();
         return view('appointments.create',compact('doctor','patient'));
@@ -48,6 +59,7 @@ class AppointmentController extends Controller
      */
     public function store(AppointmentRequest $request)
     {
+        Log::info("creating appointment");
         $notfound= false;
         if(Appointment::where('data',$request->input('appointment.data'))->where('ora',$request->input('appointment.ora'))->count()==0)
         {
@@ -92,6 +104,7 @@ class AppointmentController extends Controller
      */
     public function update(AppointmentRequest $request, Appointment $appointment)
     {
+        Log::info("updating appointment",['id'=>$appointment->id,'user'=>Auth::user()->email]);
         $appointment->update($request->input('appointment'));
 
         return redirect('/clinica/appointments');
@@ -105,6 +118,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
+        Log::info("deleting appointment",['id'=>$appointment->id]);
         $appointment->delete();
         return redirect('/clinica/appointments');
     }

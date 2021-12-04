@@ -74,6 +74,9 @@
                                             <td><a class="btn btn-primary"
                                                     href="/clinica/doctors/{{ $item->id }}/patients">patients</a>
                                             </td>
+                                            <td><a class="btn btn-primary"
+                                                href="/clinica/doctors/{{ $item->id }}/appointments">appuntamenti</a>
+                                        </td>
                                             <td>
                                                 <form action="{{ route('doctors.destroy', $item->id) }}" method="POST">
                                                     @csrf
