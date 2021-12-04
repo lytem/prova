@@ -41,7 +41,11 @@
             </div>
             <div class="form-group">
                 <label for="data">data</label>
-                <input type="date" name="appointment[data]" class="form-control" placeholder="date" value="{{$item->data}}"/>
+                <input type="date" name="appointment[data]" class="form-control"  value="{{$appointment->data}}"/>
+            </div>
+            <div class="form-group">
+                <label for="ora">data</label>
+                <input type="time" name="appointment[ora]" class="form-control"  value="{{$appointment->ora}}"/>
             </div>
         </div>
         <div class="card-footer text-muted">

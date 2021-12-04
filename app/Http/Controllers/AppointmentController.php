@@ -15,11 +15,16 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query=$request->input('query','');
         $items=Appointment::get();
+        $patient=Patient::orderby('cognome','ASC');
+        if ($query) {
+            $patient=$patient->where('patient.cognome','LIKE','%'.$query.'%');
+        }
         $doctor=Doctor::get();
-        $patient=Patient::get();
+
         return view('appointments.index',compact('items','doctor','patient'));
     }
 
@@ -43,12 +48,13 @@ class AppointmentController extends Controller
      */
     public function store(AppointmentRequest $request)
     {
-        if(!$appointment = Appointment::where('data',$request->input('appointment.data'))->first()) {
-            $appointment = Appointment::create($request->input('appointment'));
+        $notfound= false;
+        if(Appointment::where('data',$request->input('appointment.data'))->where('ora',$request->input('appointment.ora'))->count()==0)
+        {
+            Appointment::create($request->input('appointment'));
+            $notfound=true;
         }
-
-
-        return redirect()->route('appointments.index')->with('message', $appointment->wasRecentlyCreated ? "appuntamento creato" : "appuntamento già presente");
+        return redirect()->route('appointments.index')->with('message', $notfound ? "appuntamento creato" : "appuntament gia riservato");
 
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
-    protected $fillable=['doctor_id','patient_id','data'];
+    protected $fillable=['doctor_id','patient_id','data','ora'];
 
     public function doctor(){
         return $this->belongsTo(Doctor::class);
@@ -17,7 +17,5 @@ class Appointment extends Model
         return $this->belongsTo(Patient::class);
     }
 
-    protected $casts = [
-        'date' => 'datetime:Y-m-d\TH:i',
-    ];
+
 }

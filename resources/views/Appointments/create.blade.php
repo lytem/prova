@@ -42,6 +42,10 @@
                     <label for="data">data</label>
                     <input type="date" name="appointment[data]" class="form-control" placeholder="date"/>
                 </div>
+                <div class="form-group">
+                    <label for="data">data</label>
+                    <input type="time" name="appointment[ora]" class="form-control" placeholder="date"/>
+                </div>
 
 
                 <div class="card-footer text-muted">

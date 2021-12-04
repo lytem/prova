@@ -24,9 +24,10 @@ class PatientController extends Controller
 
         $items=Patient::orderby('cognome','ASC');
 
-        if ($query) {
-            $items=$items->where('cognome','LIKE','%.'.$query.'%');
+       if($query) {
+            $items=Patient::where('cognome','LIKE','%'.$query.'%');
         }
+
         $items=$items->get();
         return view('Patients.index',compact('items','query'));
     }
@@ -60,7 +61,7 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
-        if (!$patient=Patient::where('codic_fiscale',$request->input('codice_fiscale'))->first()) {
+        if (!$patient=Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->first()) {
             $patient=Patient::create($request->input('patient'));
         }
 
@@ -102,8 +103,18 @@ class PatientController extends Controller
      */
     public function update(PatientRequest $request, Patient $patient)
     {
-        $patient->update($request->input('patient'));
-        return redirect()->route('patients.index')->with('message','paziente modificato');
+
+
+        if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==0) {
+            //$patient=Patient::update($request->input('patient'));
+            $patient->update($request->input('patient'));
+        }
+
+        return redirect()->route('patients.index')->with('message', $patient->wasRecentlyCreated ? "paziente creato" : "paziente già presente");
+
+
+
+
 
 
     }

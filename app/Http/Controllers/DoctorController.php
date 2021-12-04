@@ -24,7 +24,7 @@ class DoctorController extends Controller
         $items=Doctor::orderby('cognome','ASC');
 
         if ($query) {
-            $items=$items->where('cognome','LIKE','%.'.$query.'%');
+            $items=$items->where('cognome','LIKE','%'.$query.'%');
         }
         $items=$items->get();
         return view('Doctors.index',compact('items','query'));

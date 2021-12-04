@@ -17,7 +17,8 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->integer('doctor_id')->nullable();
             $table->integer('patient_id')->nullable();
-            $table->date('data');
+            $table->string('data');
+            $table->string('ora');
 
 
             $table->softDeletes();
