@@ -29,7 +29,7 @@ class PatientController extends Controller
         $cont=0;
 
        if($query) {
-            $items=Patient::where('cognome','LIKE','%'.$query.'%');
+            $items=Patient::where('cognome','LIKE','%'.$query.'%')->orwhere('nome','LIKE','%'.$query.'%')->get();
             $cont=$items->count();
         }
         else{

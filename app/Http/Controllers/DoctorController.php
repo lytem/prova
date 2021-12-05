@@ -26,14 +26,14 @@ class DoctorController extends Controller
         $items=Doctor::orderby('cognome','ASC');
         $conta=0;
         if ($query) {
-            $items=$items->where('cognome','LIKE','%'.$query.'%');
+            $items=$items->where('cognome','LIKE','%'.$query.'%')->orwhere('nome','LIKE','%'.$query.'%')->get();
             $conta=$items->count();
         }
         else{
             $items=$items->get();
         }
 
-        return view('Doctors.index',compact('items','query','conta'));
+        return view('doctors.index',compact('items','query','conta'));
     }
 
 

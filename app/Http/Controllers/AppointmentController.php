@@ -36,7 +36,9 @@ class AppointmentController extends Controller
 
         if ($query) {
 
-            $items = Appointment::whereRelation('patient', 'cognome','LIKE','%'.$query.'%')->orwhererelation('patient', 'nome','LIKE','%'.$query.'%')->get();
+            $items = Appointment::whereRelation('patient', 'cognome','LIKE','%'.$query.'%')
+                                ->orwhererelation('patient', 'nome','LIKE','%'.$query.'%')->get();
+                    $cont=$items->count();
         }
         else{
             $items=$items->get();
@@ -74,14 +76,14 @@ class AppointmentController extends Controller
      */
     public function store(AppointmentRequest $request)
     {
+
         Log::info("creating appointment");
-        $notfound= false;
-        if(Appointment::where('data',$request->input('appointment.data'))->where('ora',$request->input('appointment.ora'))->count()==0)
+        if(!$appointment = Appointment::where('data',$request->input('appointment.data'))
+                                      ->where('ora',$request->input('appointment.ora'))->first())
         {
-            Appointment::create($request->input('appointment'));
-            $notfound=true;
+            $appointment = Appointment::create($request->input('appointment'));
         }
-        return redirect()->route('appointments.index')->with('message', $notfound ? "appuntamento creato" : "appuntament gia riservato");
+        return redirect()->route('appointments.index')->with('message', $appointment->wasRecentlyCreated ? "appuntamneto creato" : "appuntamneto già presente");
 
     }
 
@@ -120,9 +122,14 @@ class AppointmentController extends Controller
     public function update(AppointmentRequest $request, Appointment $appointment)
     {
         Log::info("updating appointment",['id'=>$appointment->id,'user'=>Auth::user()->email]);
-        $appointment->update($request->input('appointment'));
-
-        return redirect('/clinica/appointments');
+        if( Appointment::where('data',$request->input('appointment.data'))
+                         ->where('ora',$request->input('appointment.ora'))->count()==0) {
+            $appointment->update($request->input('appointment'));
+        }
+        else{
+            return redirect()->route('appointments.index')->with('message',"appuntamento non disponibile");
+        }
+        return redirect()->route('appointments.index')->with('message',"modifica eseguita corettamente");
     }
 
     /**
@@ -135,6 +142,8 @@ class AppointmentController extends Controller
     {
         Log::info("deleting appointment",['id'=>$appointment->id]);
         $appointment->delete();
-        return redirect('/clinica/appointments');
+        return redirect()->route('appointments.index')->with('message',"cancelazione eseguita corettamente");
+
+
     }
 }
