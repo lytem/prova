@@ -25,21 +25,7 @@
                     <label for="email">email</label>
                     <input type="text" name="department[email]" class="form-control" placeholder="email"/>
                 </div>
-                <div class="form-group">
-                    <label for="exam_id">Scelgi esame</label>
 
-                    <select name="department[exam_id]" class="form-control">
-                        <option value="0"> ---esame--- </option>
-                        @foreach ($esame as $item)
-
-                            <option value="{{ $item->id }}">
-                                {{ $item->nome }}
-                            </option>
-
-                        @endforeach
-                    </select>
-
-                </div>
                 <div class="card-footer text-muted">
 
                     <input type="submit" value="salva" class="btn btn-success">

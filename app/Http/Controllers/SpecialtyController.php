@@ -24,15 +24,15 @@ class SpecialtyController extends Controller
         Log::info("viewing specialties",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
         $items=Specialty::orderby('nome','ASC');
-        $cont=0;
+
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();
-           $cont=$items->count();
+
         }
         else{
             $items=$items->get();
         }
-        return view('specialties.index',compact('items','query','cont'));
+        return view('specialties.index',compact('items','query'));
 
     }
 

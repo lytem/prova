@@ -7,9 +7,12 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentRequest;
+use App\Models\Department;
+use App\Models\Exam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
+
 
 class AppointmentController extends Controller
 {
@@ -32,20 +35,21 @@ class AppointmentController extends Controller
 
         $patient=Patient::orderby('cognome','ASC');
 
-        $cont=0;
+
 
         if ($query) {
 
             $items = Appointment::whereRelation('patient', 'cognome','LIKE','%'.$query.'%')
                                 ->orwhererelation('patient', 'nome','LIKE','%'.$query.'%')->get();
-                    $cont=$items->count();
+
         }
         else{
             $items=$items->get();
         }
         $doctor=Doctor::get();
+        $department=Department::get();
 
-        return view('appointments.index',compact('items','doctor','patient','cont','query'));
+        return view('appointments.index',compact('items','doctor','patient','query','department'));
     }
     public function appointmentsDoctor($doctorId){
 
@@ -53,7 +57,7 @@ class AppointmentController extends Controller
         $doctor=Doctor::find($doctorId);
 
         $items=$doctor->appointment()->get();
-        return view('appointments.appointmentsDoctor',compact('doctorId','items','appointment'));
+        return view('appointments.appointmentsDoctor',compact('doctor','items','appointment'));
     }
     /**
      * Show the form for creating a new resource.
@@ -65,7 +69,9 @@ class AppointmentController extends Controller
 
         $doctor=Doctor::get();
         $patient=Patient::get();
-        return view('appointments.create',compact('doctor','patient'));
+        $exam=Exam::get();
+        $department=Department::get();
+        return view('appointments.create',compact('doctor','patient','exam','department'));
     }
 
     /**
@@ -108,7 +114,9 @@ class AppointmentController extends Controller
     {
         $doctor=Doctor::get();
         $patient=Patient::get();
-        return view('appointments.edit',compact('doctor','patient','appointment'));
+        $exam=Exam::get();
+        $department=Department::get();
+        return view('appointments.edit',compact('doctor','patient','appointment','exam','department'));
 
     }
 

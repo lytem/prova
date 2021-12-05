@@ -15,10 +15,9 @@
                         <div class="alert alert-success">{{ session('delete') }}</div>
                     @endif
                 </div>
-                @if ($conta=0)
+                @if ($items->count()== 0 && $query != null)
                     Nessun risultato trovato
                 @endif
-
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -56,7 +55,7 @@
                                         <th>indirizzo</th>
                                         <th>telefono</th>
                                         <th>email</th>
-                                        <th>esame</th>
+
 
                                     </thead>
                                     <tbody>
@@ -72,7 +71,7 @@
                                                 </td>
                                                 <td>{{ $item->telefono}}</td>
                                                 <td>{{ $item->email}}</td>
-                                                <td><td>{{ !empty($item->esame) ? $item->esame->nome : '' }}</td></td>
+
                                                 <td>
                                                     <form action="{{ route('departments.destroy', $item->id) }}"
                                                         method="post">

@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('doctor_id')->nullable();
             $table->integer('patient_id')->nullable();
             $table->integer('department_id')->nullable();
+            $table->integer('exam_id')->nullable();
             $table->string('data');
             $table->string('ora');
 

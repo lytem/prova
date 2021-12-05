@@ -32,7 +32,22 @@
                     @foreach ($patient as $item)
 
                         <option value="{{ $item->id }}" @if($item->id == $appointment->patient_id) selected="selected" @endif>
-                            {{ $item->cognome }}
+                            {{ $item->cognome }} {{ $item->nome }}
+                        </option>
+
+                    @endforeach
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label for="department_id">Scelgi reparto</label>
+
+                <select name="appointment[department_id]" class="form-control">
+                    <option value="0"> ---reparto-- </option>
+                    @foreach ($department as $item)
+
+                        <option value="{{ $item->id }}" @if($item->id == $appointment->department_id) selected="selected" @endif>
+                            {{ $item->nome}}
                         </option>
 
                     @endforeach

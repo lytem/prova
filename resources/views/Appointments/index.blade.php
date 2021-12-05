@@ -15,10 +15,9 @@
                         <div class="alert alert-success">{{ session('delete') }}</div>
                     @endif
                 </div>
-                @if ($cont=0)
-                    Nessun risultato trovato
-                @endif
-
+                @if ($items->count()== 0 && $query != null)
+                Nessun risultato trovato
+            @endif
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -52,8 +51,10 @@
                                 <table class="table tab-content table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>Nome Dottore</th>
+                                        <th>@sortablelink('Nome') Dottore</th>
                                         <th>nome paziente</th>
+                                        <th>Esami</th>
+                                        <th>Reparto</th>
                                         <th>data</th>
                                         <th>orario</th>
 
@@ -70,6 +71,8 @@
                                                 <td>{{ Str::ucfirst(!empty($item->patient) ? $item->patient->nome : '') }}
                                                     {{ Str::ucfirst(!empty($item->patient) ? $item->patient->cognome : '') }}
                                                 </td>
+                                                <td>{{ Str::ucfirst(!empty($item->department) ? $item->department->nome : '') }}</td>
+                                                <td>{{ Str::ucfirst(!empty($item->exam) ? $item->exam->nome : '') }}</td>
                                                 <td>{{ $item->data }}</td>
                                                 <td>{{ $item->ora }}</td>
                                                 <td>

@@ -38,6 +38,30 @@
                     </select>
 
                 </div>
+                <label for="exam_id">Scelgi esame</label>
+                <select name="appointment[exam_id]" class="form-control">
+                    <option value="0"> ---reparto-- </option>
+                    @foreach ($exam as $item)
+                    <option value="{{$item->id}}">
+                        {{$item->nome}}
+                    </option>
+                    @endforeach
+                </select>
+                <div class="form-group">
+                    <label for="department_id">Scelgi reparto</label>
+
+                    <select name="appointment[department_id]" class="form-control">
+                        <option value="0"> ---reparto-- </option>
+                        @foreach ($department as $item)
+
+                            <option value="{{ $item->id }}">
+                                {{ $item->nome}}
+                            </option>
+
+                        @endforeach
+                    </select>
+
+                </div>
                 <div class="form-group">
                     <label for="data">data</label>
                     <input type="date" name="appointment[data]" class="form-control" placeholder="date"/>

@@ -26,16 +26,16 @@ class PatientController extends Controller
         $query=$request->input('query','');
 
         $items=Patient::orderby('cognome','ASC');
-        $cont=0;
+
 
        if($query) {
             $items=Patient::where('cognome','LIKE','%'.$query.'%')->orwhere('nome','LIKE','%'.$query.'%')->get();
-            $cont=$items->count();
+
         }
         else{
             $items=$items->get();
         }
-        return view('Patients.index',compact('items','query','cont'));
+        return view('Patients.index',compact('items','query'));
     }
 
     public function patientDoctor($doctorId){

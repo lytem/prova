@@ -24,15 +24,15 @@ class ExamController extends Controller
         Log::info("viewing exams",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
         $items=Exam::orderby('nome','ASC');
-        $cont=0;
+
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();
-           $cont=$items->count();
+
         }
         else{
             $items=$items->get();
         }
-        return view('exams.index',compact('items','query','cont'));
+        return view('exams.index',compact('items','query'));
 
     }
 

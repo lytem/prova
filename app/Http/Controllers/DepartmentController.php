@@ -25,15 +25,15 @@ class DepartmentController extends Controller
         Log::info("viewing departments",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
         $items=Department::orderby('nome','ASC');
-        $cont=0;
+
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();
-           $cont=$items->count();
+
         }
         else{
             $items=$items->get();
         }
-        return view('departments.index',compact('items','query','cont'));
+        return view('departments.index',compact('items','query'));
 
     }
 
@@ -44,8 +44,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $esame=Exam::get();
-        return view('departments.create',compact('esame'));
+
+        return view('departments.create');
     }
 
     /**
@@ -82,9 +82,9 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        $esame=Exam::get();
 
-        return view('departments.edit',compact('department','esame'));
+
+        return view('departments.edit',compact('department'));
     }
 
     /**

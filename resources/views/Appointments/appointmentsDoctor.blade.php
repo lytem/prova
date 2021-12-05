@@ -26,7 +26,7 @@
                                     <div style="float: left">
                                         <h1>
                                             <b
-                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">Appuntamenti Dottore</b>
+                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">Appuntamenti Dottore: {{$doctor->nome}} {{$doctor->cognome}} </b>
                                         </h1>
                                     </div>
                                     <div style="float: right">
@@ -88,7 +88,7 @@
                                 </table>
                             </div>
                             <div class="card-footer text-muted">
-
+                                <a href="{{url()->previous()}}" class="btn btn-dark" style="float: left">indietro</a>
                                 <a href="{{ route('appointments.create') }}" class="btn btn-primary">nuovo
                                     appuntamento</a>
                             </div>
