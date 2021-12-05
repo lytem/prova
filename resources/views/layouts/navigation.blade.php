@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:rgb(247, 125, 247) ">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <img src="../../img/logo.png"  width="60" height="70">
                     </a>
                 </div>
 
@@ -18,37 +18,37 @@
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors')">
+                    <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors')" style="color: purple">
                         {{ __('Doctors') }}
                     </x-nav-link>
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients')">
+                    <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients')" style="color: purple">
                         {{ __('Pazienti') }}
                     </x-nav-link>
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments')">
+                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments')" style="color: purple">
                         {{ __('Appuntamenti') }}
                     </x-nav-link>
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments')">
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments')" style="color: purple">
                         {{ __('Reparti') }}
                     </x-nav-link>
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('exams.index')" :active="request()->routeIs('exams')">
+                    <x-nav-link :href="route('exams.index')" :active="request()->routeIs('exams')" style="color: purple">
                         {{ __('Esami') }}
                     </x-nav-link>
 
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('specialties.index')" :active="request()->routeIs('specialties')">
+                    <x-nav-link :href="route('specialties.index')" :active="request()->routeIs('specialties')" style="color: purple">
                         {{ __('Specialità') }}
                     </x-nav-link>
 
@@ -60,7 +60,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div style="color: purple">{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

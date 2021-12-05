@@ -24,7 +24,18 @@ class SpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'specialty.nome'=>'required',
+
+
+
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'specialty.nome.required'=>'campo specialità è obbligatorio',
+
         ];
     }
 }

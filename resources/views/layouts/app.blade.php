@@ -22,8 +22,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="font-sans antialiased" >
+    <div class="min-h-screen bg-gray-100"style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;background-size:cover" >
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -37,7 +37,15 @@
 
         <!-- Page Content -->
         <main>
-
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             @yield('content')
         </main>
     </div>

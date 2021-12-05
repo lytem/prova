@@ -53,7 +53,7 @@ class DoctorController extends Controller
      * @param  \App\Http\Requests\StoreDoctorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(DoctorRequest $request)
     {
 
         Log::info("creating doctor",['user'=>Auth::user()->email]);

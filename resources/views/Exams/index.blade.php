@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card">
+    <div class="card" style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
         <div class="card-header">
             <div class="card-header">
                 <div>

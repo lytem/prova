@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="card">
+    <div class="card" >
         <div class="card-header">
            <h1>nuovo esame</h1>
         </div>

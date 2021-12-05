@@ -24,7 +24,22 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'department.nome'=>'required',
+            'department.indirizzo'=>'required',
+
+
+
+
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'department.nome.required'=>'campo nome dipartimento è obbligatorio',
+            'department.indirizzo.required'=>'campo indirizzo è obbligatorio',
+
+
         ];
     }
 }

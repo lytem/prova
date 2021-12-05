@@ -24,7 +24,24 @@ class AppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'appointment.doctor.id'=>'required',
+            'appointment.patient.id'=>'required',
+            'appointment.data'=>'required',
+            'appointment.ora'=>'required',
+
+
+
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'appointment.doctor.id.required'=>'campo nome dottore obbligatorio',
+            'appointment.patient.id.required'=>'campo nome paziente obbligatorio',
+            'appointment.data.required'=>'campo data obbligatorio',
+            'appointment.ora.required'=>'campo ora obbligatorio',
+
         ];
     }
 }

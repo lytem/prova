@@ -15,16 +15,27 @@ class PatientRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'patient.nome'=>'required',
+            'patient.cognome'=>'required',
+            'patient.codice_fiscale'=>'required',
+            'patient.telefono'=>'required',
+            'patient.email'=>'required',
+
+
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'patient.nome.required'=>'campo nome obbligatorio',
+            'patient.cognome.required'=>'campo cognome obbligatorio',
+            'patient.codice_fiscale.required'=>'campo codice fiscale obbligatorio',
+            'patient.telefono.required'=>'campo telefono obbligatorio',
+            'patient.email.required'=>'campo email obbligatorio',
         ];
     }
 }

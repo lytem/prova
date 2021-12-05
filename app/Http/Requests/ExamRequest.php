@@ -24,7 +24,20 @@ class ExamRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'exam.nome'=>'required',
+
+
+
+
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'exam.nome.required'=>'campo nome esame obbligatorio',
+
+
         ];
     }
 }

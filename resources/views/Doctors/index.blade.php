@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="card">
+    <div class="card" style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
         <div class="card-header">
             <div>
                 @if (session('message'))
