@@ -19,7 +19,7 @@ A)gestione risorse(CRUD)
 
 B) Aspetti
     1)logging:
-       logging file path:storage\app.log
+       logging file path:storage\logs\app.log
 
     2)securità
         a)authentificazione:
@@ -34,5 +34,6 @@ B) Aspetti
         -alcuni campi sono obbligatori
 
 
-
+    4)Database
+        backup Path: SQL\temgoua.sql
 
