@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div class="card" style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
+    <div class="card"
+        style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
         <div class="card-header">
             <div class="card-header">
                 <div>
@@ -15,9 +16,9 @@
                         <div class="alert alert-success">{{ session('delete') }}</div>
                     @endif
                 </div>
-                @if ($items->count()== 0 && $query != null)
-                Nessun risultato trovato
-            @endif
+                @if ($items->count() == 0 && $query != null)
+                    Nessun risultato trovato
+                @endif
 
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -56,25 +57,31 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
+                                                @can('update', $item)
                                                 <td>
-                                                    <a href="{{ route('specialties.edit', $item->id) }}"
-                                                        >
+                                                    <a href="{{ route('specialties.edit', $item->id) }}">
                                                         <i class="fas fa-edit" aria-hidden="true"
-                                                        style="color: rgb(20, 20, 119);font-size:20px">
-                                                    </i>
+                                                            style="color: rgb(20, 20, 119);font-size:20px">
+                                                        </i>
                                                     </a>
-                                                    </td>
+                                                </td>
+                                                @endcan
+
                                                 <td>{{ $item->nome }}
                                                 </td>
-                                                <td>
-                                                    <form action="{{ route('specialties.destroy', $item->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-circle"><i
-                                                                class="fa fa-trash"></i>
-                                                    </form>
+                                                @can('delete', $item)
+                                                    <td>
+                                                        <form action="{{ route('specialties.destroy', $item->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-circle"><i
+                                                                    class="fa fa-trash"></i>
+                                                        </form>
 
-                                                </td>
+                                                    </td>
+                                                @endcan
+
 
                                             </tr>
                                         @endforeach
@@ -84,7 +91,10 @@
                             </div>
                             <div class="card-footer text-muted">
 
-                                <a href="{{ route('specialties.create') }}" class="btn btn-primary">nuova specialità</a>
+                                @can('create', \App\Models\Specialty::class)
+                                    <a href="{{ route('specialties.create') }}" class="btn btn-primary">nuova specialità</a>
+                                @endcan
+
 
                             </div>
                         </div>

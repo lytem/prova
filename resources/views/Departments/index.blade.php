@@ -60,12 +60,14 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
-
+                                                @can('update', $item)
                                                 <td><a href="{{ route('departments.edit', $item->id) }}">
-                                                        <i class="fas fa-edit" aria-hidden="true"
-                                                            style="color: rgb(20, 20, 119);font-size:20px">
-                                                        </i>
-                                                </td>
+                                                    <i class="fas fa-edit" aria-hidden="true"
+                                                        style="color: rgb(20, 20, 119);font-size:20px">
+                                                    </i>
+                                            </td>
+                                                @endcan
+
 
 
                                                 <td>{{ $item->nome }}
@@ -75,7 +77,7 @@
                                                 </td>
                                                 <td>{{ $item->telefono }}</td>
                                                 <td>{{ $item->email }}</td>
-
+                                                @can('delete', $item)
                                                 <td>
                                                     <form action="{{ route('departments.destroy', $item->id) }}"
                                                         method="post">
@@ -86,6 +88,8 @@
                                                     </form>
 
                                                 </td>
+                                                @endcan
+
 
 
 
@@ -96,8 +100,10 @@
                                 </table>
                             </div>
                             <div class="card-footer text-muted">
+                                 @can('create',\App\Models\Department::class)
+                                 <a href="{{ route('departments.create') }}" class="btn btn-primary">nuovo reparto</a>
 
-                                <a href="{{ route('departments.create') }}" class="btn btn-primary">nuovo reparto</a>
+                                 @endcan
 
 
 

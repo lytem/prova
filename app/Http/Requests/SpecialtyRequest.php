@@ -34,7 +34,7 @@ class SpecialtyRequest extends FormRequest
     public function messages()
     {
         return [
-            'specialty.nome.required'=>'campo specialità è obbligatorio',
+            'specialty.nome.required'=>'campo nome specialità è obbligatorio',
 
         ];
     }

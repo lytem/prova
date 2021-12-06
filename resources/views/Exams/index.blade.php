@@ -59,17 +59,21 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
+                                                @can('update', $item)
                                                 <td><a href="{{ route('exams.edit', $item->id) }}" >
-                                                        <i class="fas fa-edit" aria-hidden="true"
-                                                            style="color: rgb(20, 20, 119);font-size:20px">
-                                                        </i>
-                                                    </a>
-                                                </td>
+                                                    <i class="fas fa-edit" aria-hidden="true"
+                                                        style="color: rgb(20, 20, 119);font-size:20px">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                                @endcan
+
                                                 <td>{{ $item->nome }}
                                                 </td>
                                                 <td>
                                                     {{ $item->costo }}
                                                 </td>
+                                                @can('delete',$item)
                                                 <td>
                                                     <form action="{{ route('exams.destroy', $item->id) }}" method="post">
                                                         @csrf
@@ -79,6 +83,8 @@
                                                     </form>
 
                                                 </td>
+                                                @endcan
+
 
                                             </tr>
                                         @endforeach
@@ -87,8 +93,11 @@
                                 </table>
                             </div>
                             <div class="card-footer text-muted">
-
+                                @can('create',\App\Models\Exam::class)
                                 <a href="{{ route('exams.create') }}" class="btn btn-primary">nuovo esame</a>
+                                @endcan
+
+
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="nome">nome esame</label>
+                    <label for="nome">nome specialità</label>
                     <input type="text" name="specialty[nome]" class="form-control" value="{{$specialty->nome}}"/>
                 </div>
                 </div>

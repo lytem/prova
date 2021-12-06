@@ -63,15 +63,17 @@
 
                                 @foreach ($items as $item)
                                     <tr>
+                                       @can('update', $item)
+                                       <td>
+                                        <a href="{{ route('doctors.edit', $item->id) }}"
+                                            >
+                                            <i class="fas fa-edit" aria-hidden="true"
+                                            style="color: rgb(20, 20, 119);font-size:20px">
+                                        </i>
+                                        </a>
+                                    </td>
+                                       @endcan
 
-                                        <td>
-                                            <a href="{{ route('doctors.edit', $item->id) }}"
-                                                >
-                                                <i class="fas fa-edit" aria-hidden="true"
-                                                style="color: rgb(20, 20, 119);font-size:20px">
-                                            </i>
-                                            </a>
-                                        </td>
 
 
 
@@ -94,6 +96,7 @@
                                         <td><a class="btn btn-primary"
                                                 href="/clinica/doctors/{{ $item->id }}/appointments">appuntamenti</a>
                                         </td>
+                                        @can('delete',$item)
                                         <td>
                                             <form action="{{ route('doctors.destroy', $item->id) }}" method="POST">
                                                 @csrf
@@ -103,6 +106,8 @@
                                                 </button>
                                             </form>
                                         </td>
+                                        @endcan
+
 
 
 
@@ -114,10 +119,14 @@
                         </table>
                     </div>
                     <div class="card-footer text-muted">
-
-                        <!-- The current user can create new posts... -->
+                        @can('create',\App\models\Doctor::class)
+                                  <!-- The current user can create new posts... -->
                         <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
                         <!-- ... -->
+                        @endcan
+
+
+
 
 
 

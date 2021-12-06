@@ -83,8 +83,8 @@
                                                 <td>{{ Str::ucfirst(!empty($item->exam) ? $item->exam->nome : '') }}</td>
                                                 <td>{{ $item->data }}</td>
                                                 <td>{{ $item->ora }}</td>
-
-                                                <td>
+                                                 @can('delete', $item)
+                                                 <td>
                                                     <form action="{{ route('appointments.destroy', $item->id) }}"
                                                         method="post">
                                                         @csrf
@@ -94,6 +94,8 @@
                                                     </form>
 
                                                 </td>
+                                                 @endcan
+
 
 
 
