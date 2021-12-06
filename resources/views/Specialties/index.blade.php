@@ -81,7 +81,6 @@
 
                                 <a href="{{ route('specialties.create') }}" class="btn btn-primary">nuova specialità</a>
 
-
                             </div>
                         </div>
                     </div>
