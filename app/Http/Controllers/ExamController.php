@@ -94,12 +94,13 @@ class ExamController extends Controller
     public function update(ExamRequest $request, Exam $exam)
     {
         Log::info("updating exam",['id'=>$exam->id,'user'=>Auth::user()->email]);
-        if( Exam::where('nome',$request->input('exam.nome'))->count()==1) {
-            $exam->update($request->input('exam'));
+        /*if( Exam::where('nome',$request->input('exam.nome'))->count()==0) {
+
         }
         else{
             return redirect()->route('exams.index')->with('message',"questo esame esiste già");
-        }
+        }*/
+        $exam->update($request->input('exam'));
         return redirect()->route('exams.index')->with('message',"modifica eseguita corettamente");
     }
 

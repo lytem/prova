@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="nome">nome esame</label>
-                    <input type="text" name="specialita[nome]" class="form-control" placeholder="nome reparto"/>
+                    <input type="text" name="specialty[nome]" class="form-control" placeholder="nome reparto"/>
                 </div>
                 </div>
                 <div class="card-footer text-muted">

@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
-                                  <th></th>
+                                <th></th>
                                 <th>nome</th>
                                 <th>cognome</th>
                                 <th>Partita iva</th>
@@ -64,9 +64,14 @@
                                 @foreach ($items as $item)
                                     <tr>
 
-                                        <td><a href="{{ route('doctors.edit', $item->id) }}"
-                                            class="btn btn-primary btn-circle"><i class="fa fa-user-circle"></i></a>
-                                    </td>
+                                        <td>
+                                            <a href="{{ route('doctors.edit', $item->id) }}"
+                                                >
+                                                <i class="fas fa-edit" aria-hidden="true"
+                                                style="color: rgb(20, 20, 119);font-size:20px">
+                                            </i>
+                                            </a>
+                                        </td>
 
 
 
@@ -81,7 +86,7 @@
                                         <td>{{ $item->città }}</td>
 
 
-                                         <td>
+                                        <td>
                                             <a class="btn btn-primary"
                                                 href="/clinica/doctors/{{ $item->id }}/patients">patients
                                             </a>
@@ -110,7 +115,7 @@
                     </div>
                     <div class="card-footer text-muted">
 
-                             <!-- The current user can create new posts... -->
+                        <!-- The current user can create new posts... -->
                         <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
                         <!-- ... -->
 

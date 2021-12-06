@@ -112,14 +112,14 @@ class PatientController extends Controller
     {
         Log::info("updating patient",['id'=>$patient->id,'user'=>Auth::user()->email]);
 
-        if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==1) {
+       /* if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==1) {
             //$patient=Patient::update($request->input('patient'));
-            $patient->update($request->input('patient'));
+
         }
         else{
             return redirect()->route('patients.index')->with('message',"Esiste gia un paziente con questo codice fiscale");
-        }
-
+        }*/
+        $patient->update($request->input('patient'));
         return redirect()->route('patients.index')->with('message', "paziente creato corettamente");
 
     }

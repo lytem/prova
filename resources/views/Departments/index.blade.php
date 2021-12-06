@@ -15,7 +15,7 @@
                         <div class="alert alert-success">{{ session('delete') }}</div>
                     @endif
                 </div>
-                @if ($items->count()== 0 && $query != null)
+                @if ($items->count() == 0 && $query != null)
                     Nessun risultato trovato
                 @endif
                 <div class="py-12">
@@ -39,8 +39,7 @@
                                                 aria-label="Search" />
                                             <button type="submit" class="btn btn-outline-primary"
                                                 form="searc">search</button>
-                                            <a class="btn btn-primary"
-                                                href="{{ route('departments.index') }}">Resetta</a>
+                                            <a class="btn btn-primary" href="{{ route('departments.index') }}">Resetta</a>
                                         </form>
                                     </div>
 
@@ -62,20 +61,22 @@
                                         @foreach ($items as $item)
                                             <tr>
 
-                                                <td><a href="{{ route('departments.edit', $item->id) }}"
-                                                    class="btn btn-info"><i class="fa fa-address-book"
-                                                        aria-hidden="true"></a></i></td>
+                                                <td><a href="{{ route('departments.edit', $item->id) }}">
+                                                        <i class="fas fa-edit" aria-hidden="true"
+                                                            style="color: rgb(20, 20, 119);font-size:20px">
+                                                        </i>
+                                                </td>
 
 
-                                                <td>{{$item->nome}}
+                                                <td>{{ $item->nome }}
                                                 </td>
                                                 <td>
-                                                    {{$item->indirizzo}}
+                                                    {{ $item->indirizzo }}
                                                 </td>
-                                                <td>{{ $item->telefono}}</td>
-                                                <td>{{ $item->email}}</td>
+                                                <td>{{ $item->telefono }}</td>
+                                                <td>{{ $item->email }}</td>
 
-                                                 <td>
+                                                <td>
                                                     <form action="{{ route('departments.destroy', $item->id) }}"
                                                         method="post">
                                                         @csrf

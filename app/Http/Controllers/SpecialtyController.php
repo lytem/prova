@@ -55,10 +55,10 @@ class SpecialtyController extends Controller
     public function store(SpecialtyRequest $request)
     {
         Log::info("creating specialty",['user'=>Auth::user()->email]);
-        if(!$specialita = Specialty::where('nome',$request->input('specialita.nome'))->first()) {
-            $specialita = Specialty::create($request->input('specialita'));
+        if(!$specialty= Specialty::where('nome',$request->input('specialty.nome'))->first()) {
+            $specialty = Specialty::create($request->input('specialty'));
         }
-        return redirect()->route('specialties.index')->with('message', $specialita->wasRecentlyCreated ? "specialità creata con successo " : "specialità già presente");
+        return redirect()->route('specialties.index')->with('message', $specialty->wasRecentlyCreated ? "specialità creata con successo " : "specialità già presente");
 
     }
 
@@ -94,12 +94,14 @@ class SpecialtyController extends Controller
     public function update(SpecialtyRequest $request, Specialty $specialty)
     {
         Log::info("deleting specialty",['id'=>$specialty->id,'user'=>Auth::user()->email]);
-        if( Specialty::where('nome',$request->input('specialty.nome'))->count()==1) {
-            $specialty->update($request->input('specialty'));
+
+      /*  if( Specialty::where('nome',$request->input('specialty.nome'))->count()==0) {
+
         }
         else{
             return redirect()->route('specialties.index')->with('message',"Questa specialità esiste già");
-        }
+        }*/
+        $specialty->update($request->input('specialty'));
         return redirect()->route('specialties.index')->with('message',"modifica eseguita corettamente");
     }
 

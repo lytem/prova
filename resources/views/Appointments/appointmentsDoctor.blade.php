@@ -60,8 +60,11 @@
                                         @foreach ($items as $item)
                                             <tr>
                                                 <td><a href="{{ route('appointments.edit', $item->id) }}"
-                                                        class="btn btn-info"><i class="fa fa-address-book"
-                                                            aria-hidden="true"></a></i></td>
+                                                        >  <i class="fas fa-edit" aria-hidden="true"
+                                                        style="color: rgb(20, 20, 119);font-size:20px">
+                                                    </i>
+                                                    </a>
+                                                        </td>
                                                 <td>{{ Str::ucfirst(!empty($item->doctor) ? $item->doctor->nome : '') }}
                                                     {{ Str::ucfirst(!empty($item->doctor) ? $item->doctor->cognome : '') }}
                                                 </td>

@@ -56,9 +56,14 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
-                                                <td><a href="{{ route('specialties.edit', $item->id) }}"
-                                                        class="btn btn-info"><i class="fa fa-address-book"
-                                                            aria-hidden="true"></a></i></td>
+                                                <td>
+                                                    <a href="{{ route('specialties.edit', $item->id) }}"
+                                                        >
+                                                        <i class="fas fa-edit" aria-hidden="true"
+                                                        style="color: rgb(20, 20, 119);font-size:20px">
+                                                    </i>
+                                                    </a>
+                                                    </td>
                                                 <td>{{ $item->nome }}
                                                 </td>
                                                 <td>

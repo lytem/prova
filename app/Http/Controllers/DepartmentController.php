@@ -97,12 +97,13 @@ class DepartmentController extends Controller
     public function update(DepartmentRequest $request, Department $department)
     {
         Log::info("updating department",['id'=>$department->id,'user'=>Auth::user()->email]);
-        if( Department::where('nome',$request->input('department.nome'))->count()==1) {
-            $department->update($request->input('department'));
+       /* if( Department::where('nome',$request->input('department.nome'))->count()==1) {
+
         }
         else{
             return redirect()->route('departments.index')->with('message',"questo reparto esiste già");
-        }
+        }*/
+         $department->update($request->input('department'));
         return redirect()->route('departments.index')->with('message',"modifica eseguita corettamente");
 
     }

@@ -130,13 +130,14 @@ class AppointmentController extends Controller
     public function update(AppointmentRequest $request, Appointment $appointment)
     {
         Log::info("updating appointment",['id'=>$appointment->id,'user'=>Auth::user()->email]);
-        if( Appointment::where('data',$request->input('appointment.data'))
+       /* if( Appointment::where('data',$request->input('appointment.data'))
                          ->where('ora',$request->input('appointment.ora'))->count()==1) {
-            $appointment->update($request->input('appointment'));
+
         }
         else{
             return redirect()->route('appointments.index')->with('message',"appuntamento non disponibile");
-        }
+        }*/
+        $appointment->update($request->input('appointment'));
         return redirect()->route('appointments.index')->with('message',"modifica eseguita corettamente");
     }
 

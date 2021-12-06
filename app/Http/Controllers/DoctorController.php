@@ -97,13 +97,14 @@ class DoctorController extends Controller
     {
 
         Log::info("updating doctor",['id'=>$doctor->id,'user'=>Auth::user()->email]);
-        if(Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->count()==1) {
-            $doctor->update($request->input('doctor'));
+        /*if(Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->count()==1) {
+
         }
         else{
             Log::error("updating doctor",['id'=>$doctor->id,'message'=>'il codice fiscale existe gia','codice_fiscale'=>$doctor->codice_fiscale,'user'=>Auth::user()->email]);
             return redirect()->route('doctors.index')->with('message',"Esiste gia un dottore con questo codice fiscale");
-        }
+        }*/
+        $doctor->update($request->input('doctor'));
         return redirect()->route('doctors.index')->with('message',"Dottore modificato");
 
     }
