@@ -61,9 +61,12 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
+
                                                 <td><a href="{{ route('departments.edit', $item->id) }}"
-                                                        class="btn btn-info"><i class="fa fa-address-book"
-                                                            aria-hidden="true"></a></i></td>
+                                                    class="btn btn-info"><i class="fa fa-address-book"
+                                                        aria-hidden="true"></a></i></td>
+
+
                                                 <td>{{$item->nome}}
                                                 </td>
                                                 <td>
@@ -72,7 +75,7 @@
                                                 <td>{{ $item->telefono}}</td>
                                                 <td>{{ $item->email}}</td>
 
-                                                <td>
+                                                 <td>
                                                     <form action="{{ route('departments.destroy', $item->id) }}"
                                                         method="post">
                                                         @csrf
@@ -83,6 +86,8 @@
 
                                                 </td>
 
+
+
                                             </tr>
                                         @endforeach
 
@@ -92,6 +97,9 @@
                             <div class="card-footer text-muted">
 
                                 <a href="{{ route('departments.create') }}" class="btn btn-primary">nuovo reparto</a>
+
+
+
                             </div>
                         </div>
                     </div>

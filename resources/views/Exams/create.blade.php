@@ -10,11 +10,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="nome">nome esame</label>
-                    <input type="text" name="esame[nome]" class="form-control" placeholder="nome reparto"/>
+                    <input type="text" name="exam[nome]" class="form-control" placeholder="nome reparto"/>
                 </div>
                 <div class="form-group">
                     <label for="costo">Costo</label>
-                    <input type="text" name="esame[costo]" class="form-control" placeholder="indirizzo"/>
+                    <input type="text" name="exam[costo]" class="form-control" placeholder="indirizzo"/>
                 </div>
 
                 </div>

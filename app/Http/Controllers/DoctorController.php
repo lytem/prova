@@ -60,7 +60,7 @@ class DoctorController extends Controller
         if(!$doctor = Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->first()) {
             $doctor = Doctor::create($request->input('doctor'));
         }
-        return redirect()->route('doctors.index')->with('message', $doctor->wasRecentlyCreated ? "dottore creato" : "Dottore già presente");
+        return redirect()->route('doctors.index')->with('message', $doctor->wasRecentlyCreated ? "dottore creato" : "Esiste gia un dottore con questo codice fiscale");
 
     }
 
@@ -97,14 +97,14 @@ class DoctorController extends Controller
     {
 
         Log::info("updating doctor",['id'=>$doctor->id,'user'=>Auth::user()->email]);
-        if(Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->count()==0) {
+        if(Doctor::where('codice_fiscale',$request->input('doctor.codice_fiscale'))->count()==1) {
             $doctor->update($request->input('doctor'));
         }
         else{
             Log::error("updating doctor",['id'=>$doctor->id,'message'=>'il codice fiscale existe gia','codice_fiscale'=>$doctor->codice_fiscale,'user'=>Auth::user()->email]);
-            return redirect()->route('doctors.index')->with('message',"Questo dottore esiste gia");
+            return redirect()->route('doctors.index')->with('message',"Esiste gia un dottore con questo codice fiscale");
         }
-        return redirect()->route('doctors.index')->with('message',"dottore modificato");
+        return redirect()->route('doctors.index')->with('message',"Dottore modificato");
 
     }
 

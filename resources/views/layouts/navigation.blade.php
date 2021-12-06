@@ -23,30 +23,39 @@
                     </x-nav-link>
 
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients')" style="color: purple">
                         {{ __('Pazienti') }}
                     </x-nav-link>
 
                 </div>
+
+
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments')" style="color: purple">
                         {{ __('Appuntamenti') }}
                     </x-nav-link>
 
                 </div>
+
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments')" style="color: purple">
                         {{ __('Reparti') }}
                     </x-nav-link>
 
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('exams.index')" :active="request()->routeIs('exams')" style="color: purple">
                         {{ __('Esami') }}
                     </x-nav-link>
 
                 </div>
+
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('specialties.index')" :active="request()->routeIs('specialties')" style="color: purple">
                         {{ __('Specialità') }}

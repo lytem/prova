@@ -60,7 +60,7 @@ class DepartmentController extends Controller
         if(!$department = Department::where('nome',$request->input('department.nome'))->first()) {
             $department = Department::create($request->input('department'));
         }
-        return redirect()->route('departments.index')->with('message', $department->wasRecentlyCreated ? "dipartimento creato" : "Dipartimento già presente");
+        return redirect()->route('departments.index')->with('message', $department->wasRecentlyCreated ? "Reparto creato corettamente" : "Dipartimento già presente");
     }
 
     /**
@@ -97,7 +97,7 @@ class DepartmentController extends Controller
     public function update(DepartmentRequest $request, Department $department)
     {
         Log::info("updating department",['id'=>$department->id,'user'=>Auth::user()->email]);
-        if( Department::where('nome',$request->input('department.nome'))->count()==0) {
+        if( Department::where('nome',$request->input('department.nome'))->count()==1) {
             $department->update($request->input('department'));
         }
         else{

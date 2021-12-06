@@ -25,19 +25,14 @@ class ExamRequest extends FormRequest
     {
         return [
             'exam.nome'=>'required',
-
-
-
-
-
+            'exam.costo'=>'required|integer'
         ];
     }
     public function messages()
     {
         return [
             'exam.nome.required'=>'campo nome esame obbligatorio',
-
-
+            'exam.costo.integer'=>'campo costo è intero',
         ];
     }
 }

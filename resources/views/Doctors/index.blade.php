@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="card" style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
+    <div class="card"
+        style="background-image: url(../../img/medici.jpg) ; background-repeat:no-repeat ;  background-size:cover">
         <div class="card-header">
             <div>
                 @if (session('message'))
@@ -14,7 +15,7 @@
                 @endif
             </div>
             <div>
-                @if ($items->count()== 0 && $query != null)
+                @if ($items->count() == 0 && $query != null)
                     Nessun risultato trovato
                 @endif
             </div>
@@ -48,7 +49,7 @@
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
-                                <th></th>
+                                  <th></th>
                                 <th>nome</th>
                                 <th>cognome</th>
                                 <th>Partita iva</th>
@@ -62,9 +63,14 @@
 
                                 @foreach ($items as $item)
                                     <tr>
+
                                         <td><a href="{{ route('doctors.edit', $item->id) }}"
-                                                class="btn btn-primary btn-circle"><i class="fa fa-user-circle"></i></a>
-                                        </td>
+                                            class="btn btn-primary btn-circle"><i class="fa fa-user-circle"></i></a>
+                                    </td>
+
+
+
+
                                         <td>{{ $item->nome }}</td>
                                         <td>{{ $item->cognome }}</td>
                                         <td>{{ $item->partita_iva }}</td>
@@ -73,8 +79,12 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->residenza }}</td>
                                         <td>{{ $item->città }}</td>
-                                        <td><a class="btn btn-primary"
-                                                href="/clinica/doctors/{{ $item->id }}/patients">patients</a>
+
+
+                                         <td>
+                                            <a class="btn btn-primary"
+                                                href="/clinica/doctors/{{ $item->id }}/patients">patients
+                                            </a>
                                         </td>
                                         <td><a class="btn btn-primary"
                                                 href="/clinica/doctors/{{ $item->id }}/appointments">appuntamenti</a>
@@ -88,6 +98,10 @@
                                                 </button>
                                             </form>
                                         </td>
+
+
+
+
                                     </tr>
 
                                 @endforeach
@@ -95,11 +109,13 @@
                         </table>
                     </div>
                     <div class="card-footer text-muted">
-                        @can('create', App\Models\Doctor::class)
-                            <!-- The current user can create new posts... -->
-                            <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
-                            <!-- ... -->
-                        @endcan
+
+                             <!-- The current user can create new posts... -->
+                        <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
+                        <!-- ... -->
+
+
+
                     </div>
                 </div>
             </div>

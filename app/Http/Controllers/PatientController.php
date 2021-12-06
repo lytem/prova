@@ -72,7 +72,7 @@ class PatientController extends Controller
             $patient=Patient::create($request->input('patient'));
         }
 
-        return redirect()->route('patients.index')->with('message', $patient->wasRecentlyCreated ? "paziente creato" : "paziente già presente");
+        return redirect()->route('patients.index')->with('message', $patient->wasRecentlyCreated ? "Paziente creato" : "Esiste gia un paziente con questo codice fiscale");
 
 
 
@@ -112,15 +112,15 @@ class PatientController extends Controller
     {
         Log::info("updating patient",['id'=>$patient->id,'user'=>Auth::user()->email]);
 
-        if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==0) {
+        if (Patient::where('codice_fiscale',$request->input('patient.codice_fiscale'))->count()==1) {
             //$patient=Patient::update($request->input('patient'));
             $patient->update($request->input('patient'));
         }
         else{
-            return redirect()->route('patients.index')->with('message',"paziente già presente");
+            return redirect()->route('patients.index')->with('message',"Esiste gia un paziente con questo codice fiscale");
         }
 
-        return redirect()->route('patients.index')->with('message', "paziente creato");
+        return redirect()->route('patients.index')->with('message', "paziente creato corettamente");
 
     }
 

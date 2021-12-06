@@ -55,10 +55,10 @@ class ExamController extends Controller
     public function store(ExamRequest $request)
     {
         Log::info("creating exam",['user'=>Auth::user()->email]);
-        if(!$esame = Exam::where('nome',$request->input('esame.nome'))->first()) {
-            $esame = Exam::create($request->input('esame'));
+        if(!$exam = Exam::where('nome',$request->input('exam.nome'))->first()) {
+            $exam = Exam::create($request->input('exam'));
         }
-        return redirect()->route('exams.index')->with('message', $esame->wasRecentlyCreated ? "esame creato" : "esame già presente");
+        return redirect()->route('exams.index')->with('message', $exam->wasRecentlyCreated ? "Esame creato" : " Esame già presente");
 
     }
 
@@ -94,7 +94,7 @@ class ExamController extends Controller
     public function update(ExamRequest $request, Exam $exam)
     {
         Log::info("updating exam",['id'=>$exam->id,'user'=>Auth::user()->email]);
-        if( Exam::where('nome',$request->input('exam.nome'))->count()==0) {
+        if( Exam::where('nome',$request->input('exam.nome'))->count()==1) {
             $exam->update($request->input('exam'));
         }
         else{

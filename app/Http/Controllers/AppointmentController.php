@@ -131,7 +131,7 @@ class AppointmentController extends Controller
     {
         Log::info("updating appointment",['id'=>$appointment->id,'user'=>Auth::user()->email]);
         if( Appointment::where('data',$request->input('appointment.data'))
-                         ->where('ora',$request->input('appointment.ora'))->count()==0) {
+                         ->where('ora',$request->input('appointment.ora'))->count()==1) {
             $appointment->update($request->input('appointment'));
         }
         else{
