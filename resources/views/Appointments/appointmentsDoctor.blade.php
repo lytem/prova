@@ -50,8 +50,8 @@
                                 <table class="table tab-content table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>Nome Dottore</th>
-                                        <th>nome paziente</th>
+                                        <th>@sortablelink('Nome Dottore')</th>
+                                        <th>@sortablelinknome('paziente')</th>
                                         <th>data</th>
                                         <th>orario</th>
 

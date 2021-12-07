@@ -27,7 +27,14 @@
                                     <div style="float: left">
                                         <h1>
                                             <b
-                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">Pazienti</b>
+                                                style="font-style: italic;font-family:georgia,sherif ; font-size:23px">Pazienti
+                                            </b>
+                                            @can('create', App\Models\Patient::class)
+                                            <!-- The current user can create new posts... -->
+                                            <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
+                                            <!-- ... -->
+                                        @endcan
+
                                         </h1>
                                     </div>
                                     <div style="float: right">
@@ -50,14 +57,14 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>nome</th>
-                                        <th>cognome</th>
+                                        <th>@sortablelink('nome')</th>
+                                        <th>@sortablelink('cognome')</th>
                                         <th>Partita iva</th>
                                         <th>codice fiscale</th>
                                         <th>Telefono</th>
-                                        <th>Email</th>
+                                        <th>@sortablelink('Email')</th>
                                         <th>Residenza</th>
-                                        <th>Città</th>
+                                        <th>@sortablelink('Città')</th>
                                         <th>Medico di base</th>
                                     </thead>
                                     <tbody>
@@ -102,14 +109,15 @@
                                     </tbody>
                                 </table>
 
-                                @can('create', App\Models\Patient::class)
-                                    <!-- The current user can create new posts... -->
-                                    <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
-                                    <!-- ... -->
-                                @endcan
+
 
                             </div>
                             <div class="card-footer text-muted">
+                                @can('create', App\Models\Patient::class)
+                                <!-- The current user can create new posts... -->
+                                <a href="{{ route('patients.create') }}" class="btn btn-primary">new patient</a>
+                                <!-- ... -->
+                            @endcan
 
                             </div>
                         </div>

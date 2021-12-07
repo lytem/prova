@@ -52,7 +52,7 @@
                                 <table class="table tab-content table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>Nome specialità</th>
+                                        <th>@sortablelink('Nome specialità')</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($items as $item)

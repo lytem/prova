@@ -23,7 +23,7 @@ class ExamController extends Controller
     {
         Log::info("viewing exams",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
-        $items=Exam::orderby('nome','ASC');
+        $items=Exam::sortable();
 
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();

@@ -24,7 +24,7 @@ class DepartmentController extends Controller
     {
         Log::info("viewing departments",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
-        $items=Department::orderby('nome','ASC');
+        $items=Department::sortable();
 
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();

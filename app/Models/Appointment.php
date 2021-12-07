@@ -10,7 +10,7 @@ use Kyslik\columnSortable\Sortable;
 
 class Appointment extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory,SoftDeletes,Sortable;
 
     protected $fillable=['doctor_id','patient_id','data','ora','department_id','exam_id'];
 

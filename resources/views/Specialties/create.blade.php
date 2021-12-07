@@ -9,8 +9,14 @@
             <form action="{{route('specialties.store')}}" method="post">
                 @csrf
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="nome">nome Specialità</label>
                     <input type="text" name="specialty[nome]" class="form-control" placeholder="nome reparto"/>
+=======
+                    <label for="nome">nome esame:<span class="text-danger">*</span></label>
+                    <input type="text" name="specialita[nome]" class="form-control" placeholder="nome reparto"/>
+
+>>>>>>> develop
                 </div>
                 </div>
                 <div class="card-footer text-muted">

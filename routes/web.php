@@ -45,4 +45,5 @@ Route::prefix('clinica')->group(function () {
     Route::resource('departments', DepartmentController::class);
     Route::resource('exams', ExamController::class);
     Route::resource('specialties', SpecialtyController::class);
+    Route::resource('users', UserController::class);
 });

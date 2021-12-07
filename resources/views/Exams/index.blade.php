@@ -52,8 +52,8 @@
                                 <table class="table tab-content table-hover">
                                     <thead>
                                         <th></th>
-                                        <th>Nome esame</th>
-                                        <th>costo</th>
+                                        <th>@sortablelink('Nome esame')</th>
+                                        <th>@sortablelink('costo')</th>
 
                                     </thead>
                                     <tbody>

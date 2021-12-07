@@ -25,7 +25,7 @@ class PatientController extends Controller
         Log::info("viewing patients",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
 
-        $items=Patient::orderby('cognome','ASC');
+        $items=Patient::sortable();
 
 
        if($query) {

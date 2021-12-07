@@ -23,7 +23,7 @@ class SpecialtyController extends Controller
     {
         Log::info("viewing specialties",['query'=>$request->input('query'),'user'=>Auth::user()->email]);
         $query=$request->input('query','');
-        $items=Specialty::orderby('nome','ASC');
+        $items=Specialty::sortable();
 
         if ($query) {
            $items=$items->where('nome','LIKE','%'.$query.'%')->get();

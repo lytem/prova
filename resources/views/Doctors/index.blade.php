@@ -50,14 +50,14 @@
                         <table class="table table-hover">
                             <thead>
                                 <th></th>
-                                <th>nome</th>
-                                <th>cognome</th>
+                                <th>@sortablelink('nome')</th>
+                                <th>@sortablelink('cognome')</th>
                                 <th>Partita iva</th>
                                 <th>codice fiscale</th>
                                 <th>Telefono</th>
-                                <th>Email</th>
+                                <th>@sortablelink('Email')</th>
                                 <th>Residenza</th>
-                                <th>Città</th>
+                                <th>@sortablelink('Città')</th>
                             </thead>
                             <tbody>
 

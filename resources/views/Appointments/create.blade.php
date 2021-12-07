@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="patient_id">Scelgi paziente</label>
+                    <label for="patient_id">Scelgi paziente: <span class="text-danger">*</span> </label>
 
                     <select name="appointment[patient_id]" class="form-control">
                         <option value="0"> ---paziente-- </option>
@@ -36,9 +36,9 @@
 
                         @endforeach
                     </select>
-
+                  <small class="text-danger">{{$errors->first('patient')}}</small>
                 </div>
-                <label for="exam_id">Scelgi esame</label>
+                <label for="exam_id">Scelgi esame:<span class="text-danger">*</span></label>
                 <select name="appointment[exam_id]" class="form-control">
                     <option value="0"> ---reparto-- </option>
                     @foreach ($exam as $item)
@@ -48,7 +48,7 @@
                     @endforeach
                 </select>
                 <div class="form-group">
-                    <label for="department_id">Scelgi reparto</label>
+                    <label for="department_id">Scelgi reparto:<span class="text-danger">*</span></label>
 
                     <select name="appointment[department_id]" class="form-control">
                         <option value="0"> ---reparto-- </option>
@@ -63,12 +63,12 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="data">data</label>
-                    <input type="date" name="appointment[data]" class="form-control" placeholder="date"/>
+                    <label for="data">Data:<span class="text-danger">*</span></label>
+                    <input type="date" name="appointment[data]" class="form-control" placeholder="date" value="{{ (old('appointment.data')) ? old('appointment.data') : $appointment->data ?? '' }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="data">data</label>
-                    <input type="time" name="appointment[ora]" class="form-control" placeholder="date"/>
+                    <label for="data">Ora:<span class="text-danger">*</span></label>
+                    <input type="time" name="appointment[ora]" class="form-control" placeholder="date" value="{{ (old('appointment.ora')) ? old('appointment.ora') : $appointment->ora ?? '' }}"/>
                 </div>
 
 

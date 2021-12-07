@@ -31,7 +31,7 @@ class AppointmentController extends Controller
 
         $query=$request->input('query','');
 
-        $items=Appointment::orderby('data','ASC');
+        $items=Appointment::sortable();
 
         $patient=Patient::orderby('cognome','ASC');
 
