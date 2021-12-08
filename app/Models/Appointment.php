@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kyslik\columnSortable\Sortable;
-
+use Kyslik\ColumnSortable\Sortable;
 
 class Appointment extends Model
 {
     use HasFactory,SoftDeletes,Sortable;
 
     protected $fillable=['doctor_id','patient_id','data','ora','department_id','exam_id'];
+
 
     public function doctor(){
         return $this->belongsTo(Doctor::class);

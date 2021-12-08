@@ -42,8 +42,6 @@
                                     <a class="btn btn-primary" href="{{ route('doctors.index') }}">Resetta</a>
                                 </form>
                             </div>
-
-
                         </div>
                     </div>
                     <div class="card-body">
@@ -52,10 +50,10 @@
                                 <th></th>
                                 <th>@sortablelink('nome')</th>
                                 <th>@sortablelink('cognome')</th>
-                                <th>Partita iva</th>
-                                <th>codice fiscale</th>
-                                <th>Telefono</th>
-                                <th>@sortablelink('Email')</th>
+                                <th>Part. iva</th>
+                                <th>cod. fiscale</th>
+                                <th>Tel.</th>
+                                <th>Email</th>
                                 <th>Residenza</th>
                                 <th>@sortablelink('Città')</th>
                             </thead>
@@ -63,21 +61,15 @@
 
                                 @foreach ($items as $item)
                                     <tr>
-                                       @can('update', $item)
-                                       <td>
-                                        <a href="{{ route('doctors.edit', $item->id) }}"
-                                            >
-                                            <i class="fas fa-edit" aria-hidden="true"
-                                            style="color: rgb(20, 20, 119);font-size:20px">
-                                        </i>
-                                        </a>
-                                    </td>
-                                       @endcan
-
-
-
-
-
+                                        @can('update', $item)
+                                            <td>
+                                                <a href="{{ route('doctors.edit', $item->id) }}">
+                                                    <i class="fas fa-edit" aria-hidden="true"
+                                                        style="color: rgb(20, 20, 119);font-size:20px">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                        @endcan
                                         <td>{{ $item->nome }}</td>
                                         <td>{{ $item->cognome }}</td>
                                         <td>{{ $item->partita_iva }}</td>
@@ -86,55 +78,43 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->residenza }}</td>
                                         <td>{{ $item->città }}</td>
-
-
                                         <td>
                                             <a class="btn btn-primary"
-                                                href="/clinica/doctors/{{ $item->id }}/patients">patients
+                                                href="/clinica/doctors/{{ $item->id }}/patients">
+                                                pazienti
                                             </a>
                                         </td>
-                                        <td><a class="btn btn-primary"
-                                                href="/clinica/doctors/{{ $item->id }}/appointments">appuntamenti</a>
-                                        </td>
-                                        @can('delete',$item)
                                         <td>
-                                            <form action="{{ route('doctors.destroy', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-circle"><i
-                                                        class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <a class="btn btn-primary"
+                                            href="/clinica/doctors/{{ $item->id }}/appointments">
+                                            appuntamenti
+                                        </a>
                                         </td>
+                                        @can('delete', $item)
+                                            <td>
+                                                <form action="{{ route('doctors.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-circle"><i
+                                                            class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         @endcan
-
-
-
-
-
-                                    </tr>
-
+                                   </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer text-muted">
-                        @can('create',\App\models\Doctor::class)
-                                  <!-- The current user can create new posts... -->
-                        <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
-                        <!-- ... -->
+                        @can('create', \App\models\Doctor::class)
+                            <!-- The current user can create new posts... -->
+                            <a href="{{ route('doctors.create') }}" class="btn btn-primary">new doctors</a>
+                            <!-- ... -->
                         @endcan
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
 @endsection

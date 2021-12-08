@@ -22,7 +22,7 @@ class PatientRequest extends FormRequest
             'patient.cognome'=>'required',
             'patient.codice_fiscale'=>'required',
             'patient.telefono'=>'required',
-            'patient.email'=>'required',
+            'patient.email'=>'required|email'
 
 
 
@@ -36,6 +36,7 @@ class PatientRequest extends FormRequest
             'patient.codice_fiscale.required'=>'campo codice fiscale obbligatorio',
             'patient.telefono.required'=>'campo telefono obbligatorio',
             'patient.email.required'=>'campo email obbligatorio',
+            'patient.email'=>'il campo email invalid,form example@example.com'
         ];
     }
 }

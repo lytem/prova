@@ -51,7 +51,7 @@
                                     <thead>
                                         <th></th>
                                         <th>@sortablelink('Nome Dottore')</th>
-                                        <th>@sortablelinknome('paziente')</th>
+                                        <th>@sortablelink('Nome paziente')</th>
                                         <th>data</th>
                                         <th>orario</th>
 

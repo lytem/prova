@@ -4,7 +4,7 @@
 
 <div class="card" >
     <div class="card-header">
-        modifica doctor
+        modifica Docttore: {{$doctor->nome}} {{$doctor->cognome}}
     </div>
     <div class="card-body">
         <form action="{{ route('doctors.update', $doctor->id) }}" method="post">

@@ -26,6 +26,7 @@ class DepartmentRequest extends FormRequest
         return [
             'department.nome'=>'required',
             'department.indirizzo'=>'required',
+            'department.email'=>'required|email|max:191'
 
 
 
@@ -36,8 +37,10 @@ class DepartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            'department.nome.required'=>'campo nome dipartimento è obbligatorio',
+            'department.nome.required'=>'campo nome reparto è obbligatorio',
             'department.indirizzo.required'=>'campo indirizzo è obbligatorio',
+            'department.email.required'=>'campo email è obbligatorio',
+            'department.email'=>'il campo email invalid,form example:example@example.com'
 
 
         ];

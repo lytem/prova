@@ -27,16 +27,11 @@ class AppointmentRequest extends FormRequest
 
             'appointment.data'=>'required',
             'appointment.ora'=>'required',
-
-
-
-
         ];
     }
     public function messages()
     {
         return [
-
             'appointment.data.required'=>'campo data obbligatorio',
             'appointment.ora.required'=>'campo ora obbligatorio',
 

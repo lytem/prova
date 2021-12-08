@@ -28,7 +28,8 @@ class DoctorRequest extends FormRequest
             'doctor.cognome'=>'required',
             'doctor.codice_fiscale'=>'required',
             'doctor.telefono'=>'required',
-            'doctor.email'=>'required',
+            'doctor.email'=>'required|email',
+
 
 
 
@@ -42,6 +43,7 @@ class DoctorRequest extends FormRequest
             'doctor.codice_fiscale.required'=>'campo codice fiscale obbligatorio',
             'doctor.telefono.required'=>'campo telefono obbligatorio',
             'doctor.email.required'=>'campo email obbligatorio',
+            'doctor.email'=>'il campo email invalid,form example@example.com'
         ];
     }
 }

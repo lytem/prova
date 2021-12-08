@@ -32,7 +32,8 @@ class ExamRequest extends FormRequest
     {
         return [
             'exam.nome.required'=>'campo nome esame obbligatorio',
-            'exam.costo.integer'=>'campo costo è intero',
+            'exam.costo.required'=>'campo costo esame obbligatorio',
+            'exam.costo.integer'=>'campo costo è intero'
         ];
     }
 }

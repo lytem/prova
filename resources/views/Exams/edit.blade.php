@@ -3,7 +3,7 @@
 
     <div class="card" >
         <div class="card-header">
-           <h1>nuovo esame</h1>
+           <h1>Modifica esame: {{$exam->nome}}</h1>
         </div>
         <div class="card-body">
             <form action="{{route('exams.update',$exam->id)}}" method="post">
