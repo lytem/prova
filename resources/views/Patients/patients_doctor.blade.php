@@ -2,7 +2,7 @@
 @section('content')
 <body>
 
-    <h1>elenco pazienti dottore {{$doctor->nome}} {{$doctor->cognome}}</h1>
+    <h1>elenco pazienti dottore:  {{$doctor->nome}} {{$doctor->cognome}}</h1>
     <table class="table table-hover">
         <thead>
             <th></th>
