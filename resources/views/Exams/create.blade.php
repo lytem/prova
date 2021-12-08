@@ -9,6 +9,7 @@
                 @csrf
                 <div class="form-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <label for="nome">nome esame</label>
                     <input type="text" name="exam[nome]" class="form-control" placeholder="nome reparto"/>
                 </div>
@@ -26,6 +27,17 @@
                         value="{{ old('esame.costo') ? old('esame.costo') : $esame->costo ?? '' }}" />
 >>>>>>> develop
                 </div>
+=======
+                    <label for="nome">nome esame:<span class="text-danger">*</span></label>
+                    <input type="text" name="esame[nome]" class="form-control" placeholder="nome reparto"
+                        value="{{ old('esame.nome') ? old('esame.nome') : $esame->nome ?? '' }}" />
+                </div>
+                <div class="form-group">
+                    <label for="costo">Costo:<span class="text-danger">*</span></label>
+                    <input type="text" name="esame[costo]" class="form-control" placeholder="indirizzo"
+                        value="{{ old('esame.costo') ? old('esame.costo') : $esame->costo ?? '' }}" />
+                </div>
+>>>>>>> develop
 
                 <div class="card-footer text-muted">
 
