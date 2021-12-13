@@ -18,4 +18,13 @@ class Patient extends Model
     public function appointment(){
         return $this->hasMany(Appointment::class);
     }
+    public function setNomeAttribute($value)
+      {
+          $this->attributes['nome']= ucfirst($value);
+      }
+      public function setCognomeAttribute($value)
+      {
+          $this->attributes['cognome'] = ucfirst($value);
+      }
+
 }

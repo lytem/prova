@@ -15,4 +15,13 @@ class Specialty extends Model
     public function doctor(){
         return $this->hasMany(Doctor::class);
     }
+    public function setNomeAttribute($value)//transaforme la premiere lettre en majuscule avant de sauve dans la base de donnees
+    {
+        $this->attributes['nome'] = ucfirst($value);
+    }
+    public function getNameAttribute($value)//transforme les donnees provenant de la bas de donnees
+    {
+    return ucfirst($value);
+    }
+
 }

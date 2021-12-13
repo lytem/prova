@@ -17,4 +17,10 @@ class Department extends Model
     public function appointment(){
         return $this->hasMany(Appointment::class);
     }
+    public function setNomeAttribute($value)
+      {
+          $this->attributes['nome']= ucfirst($value);
+      }
+
+
 }
