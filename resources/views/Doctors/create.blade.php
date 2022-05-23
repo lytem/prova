@@ -47,7 +47,7 @@
                         <label for="città">città:<span class="text-danger">*</span></label>
                         <input type="text" name="doctor[città]" class="form-control" placeholder="città" value="{{ (old('doctor.città')) ? old('doctor.città') : $doctor->città ?? '' }}" />
                     </div>
-
+\
 
                     <input type="submit" class="btn btn-success" value="salva">
                     <a href="{{ url()->previous() }}" class="btn btn-dark">indietro</a>

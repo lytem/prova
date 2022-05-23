@@ -72,7 +72,7 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
-        //
+        return view('doctors.show',compact('doctor'));
     }
 
     /**

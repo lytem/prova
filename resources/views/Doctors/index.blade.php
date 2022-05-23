@@ -90,12 +90,17 @@
                                             appuntamenti
                                         </a>
                                         </td>
+                                        <td>
+                                            <form action="{{route('doctors.show',$item->id)}}" method="get">
+                                                <button type="submit" style="color: rgb(20, 72, 151)"><i class="fa fa-eye"></i>
+                                            </form>
+                                        </td>
                                         @can('delete', $item)
                                             <td>
                                                 <form action="{{ route('doctors.destroy', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-circle"><i
+                                                    <button type="submit" style="color: rgb(105, 21, 21)"><i
                                                             class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

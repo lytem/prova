@@ -27,7 +27,7 @@ class RestSpecialtyController extends Controller
     public function store(Request $request)
     {
         $specialty=new Specialty();
-        $name= $request->input('nome');
+        $name= $request->input('name');
 
         $specialty->nome=$name;
 
